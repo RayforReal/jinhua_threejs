@@ -22,7 +22,12 @@ camera.lookAt(0, 0, 0)
 // Light
 const directionalLight = new THREE.DirectionalLight(0xffffff);
 directionalLight.position.set(1, 1, 1);
+// 阴影清晰度
+directionalLight.shadow.mapSize = new THREE.Vector2(1024, 1024)
 scene.add(directionalLight)
+// 环境光
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.1);
+scene.add(ambientLight)
 
 // 球体
 const sphereGeometry = new THREE.SphereGeometry(0.5);
@@ -55,7 +60,8 @@ sphereMesh.receiveShadow = false; //default
 // 4
 planeMesh.receiveShadow = true;
 
-gui.add(directionalLight.position,'x',-2,2,0.1)
+gui.add(directionalLight.position, 'x', -2, 2, 0.1)
+gui.add(directionalLight.position, 'y', -2, 2, 0.1)
 
 //Controls
 const controls = new OrbitControls(camera, renderer.domElement);
